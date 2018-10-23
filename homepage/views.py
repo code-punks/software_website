@@ -7,7 +7,7 @@ from .forms import UserRegistrationForm
 # Create your views here.
 def home(request):
     return render(request, 'homepage/home.html')
-    
+
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
@@ -25,4 +25,4 @@ def register(request):
                 raise forms.ValidationError('Looks like a username with that email or password already exists')
     else:
         form = UserRegistrationForm()
-    return render(request, 'homepage/register.html', {'form' : form})
+    return render(request, 'homepage/register2.html', {'form' : form})
