@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 from django import forms
 from .forms import UserRegistrationForm
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
     return render(request, 'homepage/home.html')
@@ -26,3 +27,7 @@ def register(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'homepage/register2.html', {'form' : form})
+
+@login_required
+def dashboard(request):
+    return render(request, 'homepage/index.html')
