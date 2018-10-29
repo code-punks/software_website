@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" >
+{% load staticfiles %}
+<head>
+  <meta charset="UTF-8">
+  <title>Flickering Login</title>
+      <link rel="stylesheet" href="{% static 'css/style.css'%}">
+</head>
+
+<body>
+
+  <div class="background-wrap">
+  <div class="background"></div>
+</div>
+
+<form id="accesspanel"  method="post">
+  <h1 id="litheader">Pulse</h1>
+  {% csrf_token %}
+  <div class="inset">
+    {{form.as_p}}
+    <!-- <input class="loginLoginValue" type="hidden" name="service" value="login" /> -->
+    <a href="/login">Login Here</a>
+  </div>
+  <p class="p-container">
+    <input type="submit" name="Login" id="go" value="Authorize">
+  </p>
+</form>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+
+
+    <!-- <script  src="{%static 'js/index.js' %}"></script> -->
+
+
+
+
+</body>
+
+</html>
