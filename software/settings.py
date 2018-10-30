@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'homepage',
+    'widget_tweaks',
+    #'homepage.apps.UsersConfig'
 ]
 
 MIDDLEWARE = [
@@ -111,11 +113,16 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_L10N = True
-
+# 
 USE_TZ = True
 
 LOGIN_REDIRECT_URL = '/dashboard/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
+# AUTH_USER_MODEL = 'homepage.CustomUser'
 STATIC_URL = '/static/'
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
