@@ -21,6 +21,17 @@ from .forms import *
 
 User = get_user_model()
 # Create your views here.
+
+from django.contrib.auth.decorators import login_required, user_passes_test
+user_login_required = user_passes_test(lambda user: user.is_superuser, login_url='/admin/')
+def admin_required(view_func):
+    decorated_view_func = login_required(user_login_required(view_func))
+    return decorated_view_func
+
+
+
+
+
 def home(request): 
     return render(request, 'homepage/home.html')
 
@@ -43,16 +54,15 @@ def register(request):
         form = UserRegistrationForm()
     return render(request, 'homepage/register.html', {'form' : form})
 
-@login_required
+@login_required(login_url='/login/')
 def dashboard(request):
     return render(request, 'homepage/index.html')
 
 
-@login_required
+@login_required(login_url='/login/')
 def edit_user(request, pk):
     user = User.objects.get(pk=pk)
     user_form = UserProfileForm(instance=user)
- 
     ProfileInlineFormset = inlineformset_factory(User, Profile, form = EditProfileForm2)
     formset = ProfileInlineFormset(instance=user)
  
@@ -77,3 +87,19 @@ def edit_user(request, pk):
         })
     else:
         raise PermissionDenied
+
+
+@login_required(login_url='/admin/')
+@admin_required
+def assign_rfid(request):
+    unass_users = User.objects.all().filter( profile__rfid__isnull = True).exclude(username = 'admin')
+    form = AssignRFIDForm(extra=unass_users)
+    if request.method == "POST":
+        form = AssignRFIDForm(request.POST, request.FILES, extra=unass_users)
+        if form.is_valid():
+            form.save() 
+
+    return render(request, "homepage/assign_rfid.html",{
+        "form" : form
+        })
+    
