@@ -44,6 +44,24 @@ class Balance(models.Model):
     payment_balance = models.IntegerField( blank = True)
     month = models.IntegerField( blank = True)
 
+class Entry(models.Model):
+    user = models.OneToOneField(User)
+    entry_time = models.DateTimeField(blank = True,null = True)
+    exit_time = models.DateTimeField(blank = True)
+    time = models.IntegerField(blank = True)
+    vehicle_type = models.IntegerField(blank = True,null = True)
+    amount = models.IntegerField(blank = True)
+
+    def update_time(self):
+        return self.exit_time - self.entry_time
+
+    def calculate_amount(self):
+        if(self.time != None and self.vehicle_type != None):
+            if(self.vehicle_type == 1):
+                return time * 40 
+            else:
+                return time * 30
+
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:

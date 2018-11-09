@@ -19,4 +19,5 @@ urlpatterns = [
 	url(r'^dashboard/$', views.dashboard, name='dashboard'),
 	url(r'^edit_profile/(?P<pk>[\-\w]+)/$',views.edit_user,name='edit_profile'),
 	url(r'^assign_rfid/$', views.assign_rfid, name='assign_rfid'),
+	#url(r'^api/newentry$', views.new_entry, name = 'new_entry'),
 	]
