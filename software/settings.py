@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'homepage',
     'widget_tweaks',
+    'rest_framework',
     #'homepage.apps.UsersConfig'
 ]
 

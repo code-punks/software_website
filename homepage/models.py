@@ -27,7 +27,7 @@ class Profile(models.Model):
         return self.user.username
 
 class Bill(models.Model):
-    rfid = models.OneToOneField(User)
+    rfid = models.ForeignKey(User)
     month = models.IntegerField( blank = True)
     monthly_amount = models.IntegerField( blank = True)
     def __str__(self):
@@ -37,20 +37,20 @@ class Payment(models.Model):
     date = models.DateField(blank = True)
     payment_month = models.IntegerField(blank = True)
     amount_paid = models.IntegerField( blank = True)
-    rfid = models.OneToOneField(Bill, on_delete = models.CASCADE)
+    rfid = models.ForeignKey(Bill, on_delete = models.CASCADE)
 
 class Balance(models.Model):
-    rfid = models.OneToOneField(Payment, on_delete = models.CASCADE)
+    rfid = models.ForeignKey(Payment, on_delete = models.CASCADE)
     payment_balance = models.IntegerField( blank = True)
     month = models.IntegerField( blank = True)
 
 class Entry(models.Model):
-    user = models.OneToOneField(User)
+    user = models.ForeignKey(User)
     entry_time = models.DateTimeField(blank = True,null = True)
-    exit_time = models.DateTimeField(blank = True)
-    time = models.IntegerField(blank = True)
+    exit_time = models.DateTimeField(blank = True,null = True)
+    time = models.IntegerField(blank = True,null = True)
     vehicle_type = models.IntegerField(blank = True,null = True)
-    amount = models.IntegerField(blank = True)
+    amount = models.IntegerField(blank = True,null = True)
 
     def update_time(self):
         return self.exit_time - self.entry_time
