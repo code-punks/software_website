@@ -25,10 +25,13 @@ class CustomUserAdmin(UserAdmin):
             return list()
         return super(CustomUserAdmin, self).get_inline_instances(request, obj)
 
+class EntryAdmin(admin.ModelAdmin):
+    model = Entry
+    list_display = ('user','entry_time','time','amount',)
 
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Bill)
 admin.site.register(Balance)
 admin.site.register(Payment)
-admin.site.register(Entry)
+admin.site.register(Entry, EntryAdmin)

@@ -1,22 +1,30 @@
 from django.shortcuts import render
+import django_filters.rest_framework
 from rest_framework import viewsets
+from rest_framework import generics
 from homepage.models import *
 from .serializers import *
 from django.contrib.auth import get_user_model
-
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import permissions
 User = get_user_model()
 
 class UserView(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = (permissions.IsAdminUser,)
 
 class ProfileView(viewsets.ModelViewSet):
 	queryset = Profile.objects.all().exclude(rfid__isnull = True)
 	serializer_class = ProfileSerializer
+	filter_fields = ('rfid',)
+	filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
+	permission_classes = (permissions.IsAdminUser)
 
 class EntryView(viewsets.ModelViewSet):
 	queryset = Entry.objects.all()
 	serializer_class = EntrySerializer
+
 
 class ExitView(viewsets.ModelViewSet):
 	queryset = Entry.objects.all()

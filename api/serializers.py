@@ -17,7 +17,7 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
 class EntrySerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:
 		model = Entry
-		fields = ('id','url','user','entry_time')
+		fields = ('id','url','user','entry_time','exit_time','time','amount')
 
 class ExitSerializer(serializers.HyperlinkedModelSerializer):
 	class Meta:

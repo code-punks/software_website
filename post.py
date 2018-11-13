@@ -1,16 +1,21 @@
-import sys
 import requests
+import json
 
-URL = 'http://127.0.0.1:8000/api/newentry'
+def main():
+    #req = requests.get('http://127.0.0.1:8000/api/users/')
+    # print("HTTP Status Code: " + str(req.status_code))
+    # print(req.headers)
+    # json_response = json.loads(req.content)
+    # print("Pokemon Name: " + json_response['name'])
 
-client = requests.session()
+    query={'rfid':'12345'}
+    req = requests.get('http://127.0.0.1:8000/api/profiles/', params=query)
+    response = json.loads(req.content)
+    
+    user_url = response[0]['user']
 
-# Retrieve the CSRF token first
-client.get(URL)  # sets cookie
-print(client.cookies)
-
-#csrftoken = client.cookies['csrftoken']
-
-
-# post_data = dict(csrfmiddlewaretoken=csrftoken,custom_0 = 1234 ,custom_1 = 1234)
-# r = client.post(URL, data=post_data, headers=dict(Referer=URL))
+    req = requests.get(user_url)
+    user_id = json.loads(req.content)['id']
+    print(user_id)
+if __name__ == '__main__':
+    main()

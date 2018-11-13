@@ -48,19 +48,29 @@ class Entry(models.Model):
     user = models.ForeignKey(User)
     entry_time = models.DateTimeField(blank = True,null = True)
     exit_time = models.DateTimeField(blank = True,null = True)
-    time = models.IntegerField(blank = True,null = True)
     vehicle_type = models.IntegerField(blank = True,null = True)
-    amount = models.IntegerField(blank = True,null = True)
 
-    def update_time(self):
-        return self.exit_time - self.entry_time
 
-    def calculate_amount(self):
-        if(self.time != None and self.vehicle_type != None):
+    @property
+    def time(self):
+        if(self.exit_time != None and self.entry_time != None):
+            return self.exit_time - self.entry_time
+        else:
+            return None
+
+    @property    
+    def amount(self):
+        if(self.time != None ):
             if(self.vehicle_type == 1):
-                return time * 40 
+                return self.time * 40 
             else:
-                return time * 30
+                return self.time * 30
+
+    def get_queryset(self):
+        super(Entry, self).get_queryset().annotate(time=self.time,amount=self.amount)
+
+    def __str__(self):
+        return self.user
 
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
