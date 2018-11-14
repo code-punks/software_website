@@ -10,7 +10,7 @@ from django.contrib.auth import views as auth_views
 from django.conf.urls import url
 from . import views
 
-
+ 
 urlpatterns = [
 	url(r'^$', views.home, name='home'),
 	url(r'^login/$', auth_views.login,{'template_name': 'homepage/login2.html'}),
@@ -19,5 +19,6 @@ urlpatterns = [
 	url(r'^dashboard/$', views.dashboard, name='dashboard'),
 	url(r'^edit_profile/(?P<pk>[\-\w]+)/$',views.edit_user,name='edit_profile'),
 	url(r'^assign_rfid/$', views.assign_rfid, name='assign_rfid'),
+	url(r'^make_payment/$',views.make_payment, name='make_payment')
 	#url(r'^api/newentry$', views.new_entry, name = 'new_entry'),
 	]

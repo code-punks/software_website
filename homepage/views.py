@@ -103,9 +103,12 @@ def assign_rfid(request):
         "form" : form
         })
     
-
-
-# def new_entry(request):
-#     if request.method == "POST":
-#         print(request)
-#     return render(request, "homepage/home.html")
+@login_required
+def make_payment(request):
+    get_the_bill = Bill.objects.all().filter(rfid__username__exact = request.user.username)
+    form = PaymentForm()
+    if request.method == "POST":
+        form = PaymentForm()
+        if form.is_valid():
+            form.save()
+    return render(request,"homepage/make_payment.html",{"form":form})

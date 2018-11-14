@@ -7,7 +7,7 @@ from datetimepicker.widgets import DateTimePicker
 from django.contrib.admin.widgets import AdminDateWidget
 
 User = get_user_model()
-
+ 
 
 class UserRegistrationForm(forms.Form):
     username = forms.CharField(
@@ -70,3 +70,9 @@ class AssignRFIDForm(forms.Form):
             data =  self.cleaned_data[i]
             userob.profile.rfid = data
             userob.save()
+
+
+class PaymentForm(forms.Form):
+    to_pay = forms.IntegerField(label='Enter Amount :',required = True)
+
+   # def save(self):
