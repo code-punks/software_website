@@ -7,7 +7,7 @@ router.register('users', views.UserView)
 router.register('profiles', views.ProfileView)
 router.register('entries', views.EntryView)
 router.register('exits', views.ExitView)
-
+router.register('assignrfid',views.ProfileNullView)
 
 urlpatterns = [
     url('', include(router.urls)),

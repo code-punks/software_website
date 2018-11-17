@@ -106,9 +106,13 @@ def assign_rfid(request):
 @login_required
 def make_payment(request):
     get_the_bill = Bill.objects.all().filter(rfid__username__exact = request.user.username)
-    form = PaymentForm()
+    form = PaymentForm(request.user.id) 
+    print("Pass ",request.user.id)
     if request.method == "POST":
-        form = PaymentForm()
+        form = PaymentForm(request.user.id,request.POST)
+        print("pahuch gye")
         if form.is_valid():
             form.save()
+        else:
+            print("nhi valid ")
     return render(request,"homepage/make_payment.html",{"form":form})

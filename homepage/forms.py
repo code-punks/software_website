@@ -5,7 +5,7 @@ from .models import *
 from django.forms.extras import SelectDateWidget
 from datetimepicker.widgets import DateTimePicker
 from django.contrib.admin.widgets import AdminDateWidget
-
+from datetime import datetime,date
 User = get_user_model()
  
 
@@ -74,5 +74,27 @@ class AssignRFIDForm(forms.Form):
 
 class PaymentForm(forms.Form):
     to_pay = forms.IntegerField(label='Enter Amount :',required = True)
+    
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super(PaymentForm, self).__init__(*args, **kwargs)
 
-   # def save(self):
+    def save(self):
+        print(self.cleaned_data)
+        for i in self.cleaned_data:
+            user = self.user
+            print(user)
+            user_Bill_ob = Bill.objects.get(rfid_id = user, month = datetime.now().month)
+            payment_user = user_Bill_ob.rfid 
+            bill_to_pay = user_Bill_ob.monthly_amount
+            data =  self.cleaned_data[i]
+            print(data)
+            try:
+                user_Balance = Balance.objects.get(rfid_id = user,month = datetime.now().month - 1)
+                balance_fron_prev = user_Balance.payment_balance
+            except Balance.DoesNotExist:
+                balance_fron_prev = 0
+            new_balance = bill_to_pay  + balance_fron_prev - data
+            print(user)
+            payment_ob = Payment.objects.create(date = date.today(),payment_month = datetime.now().month, amount_paid = data,rfid_id = user)
+            new_balance_ob = Balance.objects.create(rfid_id = user,payment_balance = new_balance,month = datetime.now().month)
