@@ -1,22 +1,23 @@
-
-
 <!DOCTYPE html>
 <html lang="en" >
 {% load staticfiles %}
 <head>
   <meta charset="UTF-8">
-  <title>Flickering Login</title>
+  <title>Login</title>
       <link rel="stylesheet" href="{% static 'css/style.css'%}">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/icon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/icon/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/static/icon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"> 
 </head>
-
 <body>
-
   <div class="background-wrap">
   <div class="background"></div>
 </div>
-
 <form id="accesspanel"  method="post">
-  <h1 id="litheader">Pulse</h1>
+  <h1 id="litheader">PULSE</h1>
   {% csrf_token %}
   <div class="inset">
     {{form.as_p}}
@@ -24,18 +25,10 @@
     <a href="/register">Register Here</a>
   </div>
   <p class="p-container">
-    <input type="submit" name="Login" id="go" value="Authorize">
+    <input type="submit" name="Login" id="go" value="Login">
   </p>
 </form>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-
-
     <!-- <script  src="{%static 'js/index.js' %}"></script> -->
-
-
-
-
 </body>
-
 </html>

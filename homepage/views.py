@@ -11,7 +11,7 @@ from .models import Profile
 from .forms import UserProfileForm
 from django.forms.models import inlineformset_factory
 from django.core.exceptions import PermissionDenied
-
+from django.shortcuts import get_object_or_404
 
 from .models import *
 
@@ -32,8 +32,8 @@ def admin_required(view_func):
 
 
 
-def home(request): 
-    return render(request, 'homepage/home.html')
+def home(request):
+    return render(request, 'homepage/landing_page.html')
 
 def register(request):
     if request.method == 'POST':
@@ -52,11 +52,32 @@ def register(request):
                 raise forms.ValidationError('Looks like a username with that email or password already exists')
     else:
         form = UserRegistrationForm()
-    return render(request, 'homepage/register.html', {'form' : form})
+    return render(request, 'homepage/register2.html', {'form' : form})
 
 @login_required(login_url='/login/')
 def dashboard(request):
-    return render(request, 'homepage/index.html')
+    user = request.user
+    print(user)
+    bill_objects = Bill.objects.all().filter(rfid__username__exact = user)
+    amount_ = 0
+    bill_amount = 0
+    if len(bill_objects) != 0:
+        for obj in bill_objects:
+            bill_amount += obj.monthly_amount
+
+        try:
+            user_Balance = Balance.objects.get(rfid_id = request.user.id,month = datetime.now().month - 1)
+            balance_fron_prev = user_Balance.payment_balance
+        except Balance.DoesNotExist:
+            balance_fron_prev = 0
+        if(balance_fron_prev == None):
+            balance_fron_prev = 0
+        amount_ = bill_amount + balance_fron_prev
+        print(amount_)
+        if(amount_ == None):
+            amount_ = 0
+    print(amount_)
+    return render(request, 'homepage/dashboard.html',{'amount':amount_})
 
 
 @login_required(login_url='/login/')
@@ -80,7 +101,7 @@ def edit_user(request, pk):
                     formset.save()
                     return HttpResponseRedirect('/dashboard/')
  
-        return render(request, "homepage/edit_profile.html", {
+        return render(request, "homepage/profile.html", {
             "noodle": pk,
             "noodle_form": user_form,
             "formset": formset,

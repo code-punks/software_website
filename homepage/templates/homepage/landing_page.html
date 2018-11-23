@@ -1,0 +1,294 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en-US">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Pulse Parking Management Systems</title>
+      <link rel="stylesheet" href="/static/css/components.css">
+      <link rel="stylesheet" href="/static/css/responsee.css">
+      <link rel="stylesheet" href="/static/css/icons.css">
+      <link rel="stylesheet" href="{% static 'owl-carousel/owl.carousel.css' %}">
+      <link rel="stylesheet" href="/static/owl-carousel/owl.theme.css">
+      <!-- CUSTOM STYLE -->
+      <link rel="stylesheet" href="/static/css/template-style.css">
+      <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+      <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+      <script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>    
+      <script type="text/javascript" src="/static/js/template-scripts.js"></script>
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/static/icon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/static/icon/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/static/icon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"> 
+   </head>
+   <body class="size-1140">
+      <!-- TOP NAV WITH LOGO -->
+      <header>
+         <nav>
+            <div class="line">
+               <div class="s-12 l-2">
+                  <a href = "/"><p class="logo"><strong>PULSE</strong></p></a>
+               </div>
+               <div class="top-nav s-12 l-10">
+                  <p class="nav-text">Custom menu text</p>
+                  <ul class="right">
+                     <li class="active-item"><a href="#carousel">Home</a></li>
+                     <li><a href="#features">Features</a></li>
+                     <li><a href="#about-us">About Us</a></li>
+                     <li><a href="#our-work">Our Work</a></li>
+                     <li><a href="#services">Services</a></li>
+                     <li><a href="#contact">Contact</a></li>
+                     <li><a href=""></a></li>
+                     <li><a href=""></a></li>
+                     <li><a href=""></a></li>
+                     {% if user.is_authenticated %}
+    				<p>hello welcome {{ user.username }}</p>
+    				<p><a href="/dashboard/">Dashboard</a><br>
+    				   <a href="/logout/">Logout</a></p>
+    				{% else %}
+					<li><a href="/login/"><strong>Login</strong></a></li>
+               		<li><a href="/register/"><strong>Register</strong></a></li>
+    				{% endif %} 
+                  </ul>
+               </div>
+            </div>
+         </nav>
+      </header>  
+      <!-- <section> -->
+         <!-- CAROUSEL --> 
+         <div id="carousel" >
+            <!-- <div id="owl-demo" class="owl-carousel owl-theme">  -->
+               <div class="item">
+                  <img src="/static/img/bg.jpg" alt="123`">
+                  <div class="line"> 
+                     <div class="text hide-s">
+                        <div class="line"> 
+                        </div> 
+                        <h2>Pulse Parking Management Systems</h2>
+                       <p>Our product “Parking Automation using IoT” is computer-implemented automatic system and method for managing Parking lot</p>
+                     </div>
+                  </div>
+               </div>
+            <!-- </div> -->
+         </div>
+         <!-- FIRST BLOCK -->
+<!--          <div id="first-block">
+            <div class="line">
+               <h1>Amazing Responsive Business Template</h1>
+               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+               <div class="s-12 m-4 l-2 center"><a class="white-btn" href="#contact">Contact Us</a></div>
+            </div>
+         </div> -->
+         <!-- FEATURES -->
+         <div id="features">
+            <div class="line">
+              <h1><strong>FEATURES</strong></h1>
+               <div class="margin">
+                  <div class="s-12 m-6 l-3 margin-bottom">
+                     <i class="icon-tablet icon3x"></i>
+                     <h2>Fully Automated</h2>
+                     <p>With Pulse Systems, parking lots are fully automated i.e. zero human intervention. This is achieved by the use of RFID reader connected to Raspbery pi which is connected to server.</p>
+                  </div>
+                  <div class="s-12 m-6 l-3 margin-bottom">
+                     <i class="icon-isight icon3x"></i>
+                     <h2>Less waiting time</h2>
+                     <p>With all the tasks running fully automatic, parking lots achieve less waiting time for the people in the queue for parking. Digitalizing all the human intervention.</p>
+                  </div>
+                  <div class="s-12 m-6 l-3 margin-bottom">
+                     <i class="icon-star icon3x"></i>
+                     <h2>Security</h2>
+                     <p>Entry & Exit terminals of a parking lot are supervised by the camera & entry & exit is purely on the basis of authentication through RFID assigned to the customer. Illicit entries are denied.</p>
+                  </div>
+                  <div class="s-12 m-6 l-3 margin-bottom">
+                     <i class="icon-heart icon3x"></i>
+                     <h2>Online Payment</h2>
+                     <p>Minimalizing human intervention has been the key factor of PULSE systems. All the payments related to a parking lot are digitalized. One can easily pay their dues online by accessing their dashboards from anywhere.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- ABOUT US -->
+         <div id="about-us">
+            <div class="s-12 m-12 l-6 media-container">
+               <img src="/static/img/lot.jpg" alt="">
+            </div>
+            <article class="s-12 m-12 l-6">
+               <h2>Software<br>Engineering<br>Project</h2>
+               <p>Parking lot automation is the Software Engineering Project by Team PULSE under <br> Instructor Ms. Deepali Bhagat. This is an effort by the team to reduce human intervention & waiting time and increase security in a parking lot.</p>
+               <p><br></p>
+               <p align="center"><strong>GROUP INFORMATION</strong><br><br>
+               	<strong>Bhavay Pahuja</strong> <tab>101603074<br>
+               		<strong>Navjot Singh Sandhu</strong>	101603199<br>
+               		<strong>Chirag Mahawar</strong>	101603078<br>
+               		<strong>Deepak Lather</strong>	101610022<br>
+               		<strong>COE - 6</strong></p>
+            </article>
+         </div>
+         <!-- OUR WORK -->
+         <div id="our-work">
+            <div class="line">
+               <h2 class="section-title">Our Work</h2>
+               <div class="tabs">
+                  <div class="tab-item tab-active">
+                    <a class="tab-label active-btn">Web Design</a>
+                    <div class="tab-content">
+                      <div class="margin">
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Front-end development</h4></div><img src="/static/img/por1.jpg" alt=""></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Front-end development</h4></div><img src="/static/img/design1.jpg" alt=""></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Front-end development</h4></div><img src="/static/img/design2.jpg" alt=""></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Front-end development</h4></div><img src="/static/img/por3.jpg" alt=""></a></div>
+                      </div>
+                    </div>  
+                  </div>
+                  <div class="tab-item tab-active">
+                    <a class="tab-label active-btn">Backend Development</a>        
+                    <div class="tab-content">
+                      <div class="margin">
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Django</h4></div><img src="/static/img/django.png" alt=""></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Python</h4></div><img src="/static/img/python.png" alt=""></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>SQLite - DB</h4></div><img src="/static/img/sqlite.png" alt=""></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>TensorFlow</h4></div><img src="/static/img/tensorflow.jpg" alt=""></a></div>
+                      </div>
+                    </div>  
+                  </div>
+                  <div class="tab-item tab-active">
+                    <a class="tab-label active-btn">Hardware Integration</a>
+                    <div class="tab-content">
+                      <div class="margin">
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Raspberry Pi 3</h4></div><img src="/static/img/pi.jpg" alt=""></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>RFID Reader & Card</h4></div><img src="/static/img/rfid.jpg" alt=""></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Supervision Camera</h4></div><img src="/static/img/camera.jpg" alt=""></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Jumper Wire</h4></div><img src="/static/img/wire.jpg" alt=""></a></div>
+                      </div>
+                    </div>  
+                  </div>
+                  <div class="tab-item tab-active">
+                    <a class="tab-label active-btn">API Production</a>
+                    <div class="tab-content">
+                      <div class="margin">
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Django Rest Framework</h4></div><img src="/static/img/rest.png" alt=""></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Application Programing Interface</h4></div><img src="/static/img/api.jpg" alt=""></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Python</h4></div><img src="/static/img/python.png" alt=""></a></div>
+                        <div class="s-12 m-6 l-3"><a class="our-work-container lightbox margin-bottom"><div class="our-work-text"><h4>Responsive Design</h4></div><img src="/static/img/por5.jpg" alt=""></a></div>
+                      </div>
+                    </div>  
+                  </div>
+               </div>
+            </div>
+         </div>         
+         <!-- SERVICES -->
+         <div id="services">
+            <div class="line">
+               <h2 class="section-title">What we do</h2>
+               <div class="margin">
+                  <div class="s-12 m-6 l-4 margin-bottom">
+                     <i class="icon-vector"></i>
+                     <div class="service-text">
+                        <h3>We create</h3>
+                        <p>Hardware & Software interfaces for Parking Lot.</p>
+                     </div>
+                  </div>
+                  <div class="s-12 m-6 l-4 margin-bottom">
+                     <i class="icon-eye"></i>
+                     <div class="service-text">
+                        <h3>We look to the future</h3>
+                        <p>Customize according to your needs.</p>
+                     </div>
+                  </div>
+                  <div class="s-12 m-12 l-4 margin-bottom">
+                     <i class="icon-random"></i>
+                     <div class="service-text">
+                        <h3>We find a solution</h3>
+                        <p>PULSE Systems provide Software Solution to all the parking lot needs.</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- CONTACT -->
+         <div id="contact">
+            <div class="line">
+               <h2 class="section-title">Contact Us</h2>
+               <div class="margin">
+                  <div class="s-12 m-12 l-3 hide-m hide-s margin-bottom right-align">
+                    <img src="/static/img/logo.jpg" alt="">
+                  </div>
+                  <div class="s-12 m-12 l-4 margin-bottom right-align">
+                     <h3>Pulse Management Systems</h3>
+                     <address>
+                        <p><strong>Adress:</strong>EE-2, Hostel-J, Thapar Institute of Engineering & Technology</p>
+                        <p><strong>City:</strong>Patiala,India</p>
+                        <p><strong>E-mail:</strong>bpahuja_be16@thapar.edu</p>
+                     </address>
+                     <br />
+                     <h3>Social</h3>
+                     <p><i class="icon-facebook icon"></i> <a href="https://www.google.co.in/">Pulse</a></p>
+                  </div>
+                  <div class="s-12 m-12 l-5">
+                    <h3>Contact form</h3>
+                    <form class="customform" action="">
+                      <div class="s-12"><input name="" placeholder="Your e-mail" title="Your e-mail" type="text" /></div>
+                      <div class="s-12"><input name="" placeholder="Your name" title="Your name" type="text" /></div>
+                      <div class="s-12"><textarea placeholder="Your message" name="" rows="5"></textarea></div>
+                      <div class="s-12 m-12 l-4"><button class="color-btn" type="submit">Submit Button</button></div>
+                    </form>
+                  </div>                
+               </div>
+            </div>
+         </div>
+         <!-- MAP -->
+         <div id="map-block">  	  
+         	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1721.468429983423!2d76.36257945810944!3d30.352744295442786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39102f5335252c21%3A0x87066e6375af9a56!2sHostel+J+East+Wing!5e0!3m2!1sen!2sin!4v1540882500248" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+         </div>
+      </section>
+      <!-- FOOTER -->
+      <footer>
+         <div class="line">
+            <div class="s-12 l-6">
+               <p>Copyright © 2018, Team PULSE</p>
+            </div>
+            <div class="s-12 l-6">
+               <a class="right" href="" title="Responsee - lightweight responsive framework">Design and coding<br> by Team PULSE</a>
+            </div>
+         </div>
+      </footer>
+      <script type="text/javascript" src="/static/js/responsee.js"></script>
+      <script type="text/javascript" src="/static/owl-carousel/owl.carousel.js"></script>
+      <script type="text/javascript">
+         jQuery(document).ready(function($) {
+            var theme_slider = $("#owl-demo");
+            var owl = $('#owl-demo');
+            owl.owlCarousel({
+              nav: false,
+              dots: true,
+              items: 1,
+              loop: true,
+              autoplay: true,
+              autoplayTimeout: 6000
+            });
+            var owl = $('#owl-demo2');
+            owl.owlCarousel({
+              nav: true,
+              dots: false,
+              items: 1,
+              loop: true,
+              navText: ["&#xf007","&#xf006"],
+              autoplay: true,
+              autoplayTimeout: 4000
+            });
+        
+            // Custom Navigation Events
+            $(".next-arrow").click(function() {
+                theme_slider.trigger('next.owl');
+            })
+            $(".prev-arrow").click(function() {
+                theme_slider.trigger('prev.owl');
+            })     
+        }); 
+      </script>
+   </body>
+</html>

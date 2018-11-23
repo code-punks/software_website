@@ -46,7 +46,7 @@ class ProfileNullView(viewsets.ModelViewSet):
 class EntryView(viewsets.ModelViewSet):
 	queryset = Entry.objects.all()
 	serializer_class = EntrySerializer
-
+	authentication_classes = ()
 
 class ExitView(viewsets.ModelViewSet):
 	queryset = Entry.objects.all()
@@ -68,6 +68,7 @@ class ExitView(viewsets.ModelViewSet):
 			l = []
 			if entry_objects != None:
 				for obj in entry_objects:
+					obj.exit_time = serializer.validated_data['exit_time']
 					if int(obj.exit_time.strftime("%m")) == datetime.now().month:
 						l.append(obj)
 			print(len(l))

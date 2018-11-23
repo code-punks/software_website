@@ -25,7 +25,7 @@ SECRET_KEY = '0#gd#iei9(@$_hwit_)$$l3%3imld&ck!0u8chal&l-j6h!%js'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.43.140']
+ALLOWED_HOSTS = ['192.168.43.140','127.0.0.1']
 
 
 # Application definition
@@ -128,9 +128,11 @@ LOGIN_REDIRECT_URL = '/dashboard/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 # AUTH_USER_MODEL = 'homepage.CustomUser'
+
+STATIC_ROOT='C:\\Users\\anil\\Desktop\\software_website\\homepage\\static'
 STATIC_URL = '/static/'
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-)
+# STATICFILES_DIRS = (
+#     os.path.join(PROJECT_ROOT, 'static'),
+# )
